@@ -20,3 +20,52 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }
+
+.search {
+    display: flex;
+    align-items: right;
+    text-align: right;
+}
+
+input {
+    width: 30%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+
+}
+
+#upcomingMoviesList {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#moviesList {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie-card {
+    width: 250px; 
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.movie-card img {
+    border: 1px solid;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}

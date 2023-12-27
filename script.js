@@ -39,7 +39,7 @@ function createMovieCard(movie) {
     movieCard.appendChild(posterImage);
     movieCard.appendChild(title);
 
-    // Add an event listener to navigate to a separate page with movie details
+    
     movieCard.addEventListener('click', () => navigateToMovieDetailsPage(movie.id));
 
     return movieCard;
