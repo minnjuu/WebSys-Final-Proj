@@ -78,3 +78,13 @@ button {
     height: auto;
     margin-bottom: 10px;
 }
+
+.similar-movies-container {
+    margin-top: 20px;
+}
+
+.similar-movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
