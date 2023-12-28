@@ -24,6 +24,28 @@ function getMovieDetails() {
         .catch(error => console.error('Error fetching data:', error));
 }
 
+function displaySimilarMovies(similarMovies) {
+    const similarMoviesContainer = document.createElement('div');
+    similarMoviesContainer.classList.add('similar-movies-container');
+
+    const heading = document.createElement('h2');
+    heading.textContent = 'Similar Movies';
+
+    const similarMoviesList = document.createElement('div');
+    similarMoviesList.classList.add('similar-movies-list');
+
+    similarMovies.forEach(similarMovie => {
+        const similarMovieCard = createMovieCard(similarMovie);
+        similarMoviesList.appendChild(similarMovieCard);
+    });
+
+    similarMoviesContainer.appendChild(heading);
+    similarMoviesContainer.appendChild(similarMoviesList);
+
+    document.getElementById('movieDetails').appendChild(similarMoviesContainer);
+}
+
+
 function displayMovieDetails(movie) {
     const movieDetailsContainer = document.getElementById('movieDetails');
     movieDetailsContainer.innerHTML = '';
