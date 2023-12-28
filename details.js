@@ -104,9 +104,40 @@ function displayMovieDetails(movie) {
     movieDetailsContainer.appendChild(story);
 }
 
+function fetchMovies(url, callback, containerId = 'moviesList') {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => callback(data.results, containerId))
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function displayMovies(movies, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = ''; 
+
+    movies.forEach(movie => {
+        const movieCard = createMovieCard(movie);
+        container.appendChild(movieCard);
+    });
+}
+
+function searchMovies() {
+    const searchQuery = document.getElementById('searchInput').value;
+    document.getElementById('movieDetails').style.display = 'none';
+    document.getElementById('h1').innerHTML = `Search Result for ${searchQuery}`;
+    fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`, displayMovies);
+    
+
+}
+
+
+document.getElementById('searchButton').addEventListener('click', searchMovies);
+
 function navigateToMovieDetailsPage(movieId) {
 
     window.location.href = `movie-details.html?movieId=${movieId}`;
 }
+
+
 
 window.onload = getMovieDetails;
