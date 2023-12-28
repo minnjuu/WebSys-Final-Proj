@@ -47,8 +47,10 @@ function createMovieCard(movie) {
 
 function searchMovies() {
     const searchQuery = document.getElementById('searchInput').value;
+    document.getElementById('upcomingMoviesList').style.display = 'none';
+    document.getElementById('h2').innerHTML = `Search Result for ${searchQuery}`;
     fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`, displayMovies);
-    document.getElementById('h2').innerHTML = "";
+    
 }
 
 function navigateToMovieDetailsPage(movieId) {
