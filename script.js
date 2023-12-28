@@ -1,5 +1,6 @@
 
 const apiKey = '569b146fafa5ac11afca0a031989f2d5';
+const customHistory = [];
 
 function fetchUpcomingMovies() {
     fetchMovies(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`, displayMovies, 'upcomingMoviesList');
@@ -58,12 +59,30 @@ function navigateToMovieDetailsPage(movieId) {
     window.location.href = `movie-details.html?movieId=${movieId}`;
 }
 
-
 function initialize() {
     fetchUpcomingMovies();
 
     document.getElementById('searchButton').addEventListener('click', searchMovies);
 }
 
+function goBack() {
+    if (customHistory.length > 0) {
+        // Pop the last URL from custom history and navigate to it
+        const previousUrl = customHistory.pop();
+        window.location.href = previousUrl;
+    } else {
+        console.log('No custom history available. Going back to default upcoming movies.');
+        fetchUpcomingMovies();
+    }
+}
+
+
+function goForward() {
+    window.history.forward();
+}
+
+document.getElementById('backButton').addEventListener('click', goBack);
+
+document.getElementById('forwardButton').addEventListener('click', goForward);
 
 window.onload = initialize;

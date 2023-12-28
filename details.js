@@ -138,6 +138,19 @@ function navigateToMovieDetailsPage(movieId) {
     window.location.href = `movie-details.html?movieId=${movieId}`;
 }
 
+function goBack() {
+    window.history.back();
+}
+
+
+function goForward() {
+    window.history.forward();
+}
+
+document.getElementById('backButton').addEventListener('click', goBack);
+
+document.getElementById('forwardButton').addEventListener('click', goForward);
+
 
 
 window.onload = getMovieDetails;
