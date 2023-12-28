@@ -51,7 +51,10 @@ function searchMovies() {
     document.getElementById('h2').innerHTML = "";
 }
 
-
+function navigateToMovieDetailsPage(movieId) {
+    
+    window.location.href = `movie-details.html?movieId=${movieId}`;
+}
 
 
 function initialize() {
