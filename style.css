@@ -22,7 +22,6 @@ body {
 }
 
 .container-details {
-    width: 1500px;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -34,20 +33,25 @@ body {
     display: flex;
     align-items: right;
     text-align: right;
+    border-radius: 20px;
+    border: 1px solid;
 }
+
 
 input {
     width: 30%;
     padding: 10px;
     margin-right: 10px;
     border-radius: 20px;
+    border: 1px solid;
     
 }
 
 button {
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 30px;
+    border: 1px solid;
 
 }
 
@@ -87,4 +91,15 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+#pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; 
+}
+
+#pages button {
+    margin: 0 5px; 
 }
