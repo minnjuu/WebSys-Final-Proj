@@ -21,6 +21,15 @@ body {
 
 }
 
+.container-details {
+    width: 1500px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
 .search {
     display: flex;
     align-items: right;
