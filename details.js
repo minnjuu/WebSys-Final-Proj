@@ -45,6 +45,28 @@ function displaySimilarMovies(similarMovies) {
     document.getElementById('movieDetails').appendChild(similarMoviesContainer);
 }
 
+function createMovieCard(movie) {
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('movie-card');
+
+    const title = document.createElement('h2');
+    title.textContent = movie.title;
+
+    const posterPath = movie.poster_path;
+    const posterUrl = posterPath ? `https://image.tmdb.org/t/p/w500${posterPath}` : 'placeholder_image_url.jpg';
+
+    const posterImage = document.createElement('img');
+    posterImage.src = posterUrl;
+    posterImage.alt = movie.title;
+
+    movieCard.appendChild(posterImage);
+    movieCard.appendChild(title);
+
+    movieCard.addEventListener('click', () => navigateToMovieDetailsPage(movie.id));
+
+    return movieCard;
+}
+
 
 function displayMovieDetails(movie) {
     const movieDetailsContainer = document.getElementById('movieDetails');
