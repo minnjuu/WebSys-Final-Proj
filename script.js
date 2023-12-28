@@ -1,15 +1,51 @@
 
 const apiKey = '569b146fafa5ac11afca0a031989f2d5';
 const customHistory = [];
+let currentPage = 1;
 
-function fetchUpcomingMovies() {
-    fetchMovies(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`, displayMovies, 'upcomingMoviesList');
+function fetchUpcomingMovies(page = 1) {
+    currentPage = page;
+
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${currentPage}`;
+    
+    fetchMovies(url, displayMovies, 'upcomingMoviesList');
 }
+
+function createPageButtons(totalPages) {
+    const paginationContainer = document.getElementById('pages');
+    paginationContainer.innerHTML = '';
+
+    // Previous Page
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '&#8592;';
+    prevButton.addEventListener('click', () => navigatePage(-1));
+    paginationContainer.appendChild(prevButton);
+
+    // Next Page
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = '&#8594;'; 
+    nextButton.addEventListener('click', () => navigatePage(1));
+    paginationContainer.appendChild(nextButton);
+
+    function navigatePage(direction) {
+        const newPage = currentPage + direction;
+
+
+        if (newPage >= 1 && newPage <= totalPages) {
+            fetchUpcomingMovies(newPage);
+        }
+    }
+}
+
 
 function fetchMovies(url, callback, containerId = 'moviesList') {
     fetch(url)
         .then(response => response.json())
-        .then(data => callback(data.results, containerId))
+        .then(data => {
+            callback(data.results, containerId);
+            const totalPages = data.total_pages;
+            createPageButtons(totalPages);
+        })
         .catch(error => console.error('Error fetching data:', error));
 }
 
@@ -54,6 +90,7 @@ function searchMovies() {
     
 }
 
+
 function navigateToMovieDetailsPage(movieId) {
     
     window.location.href = `movie-details.html?movieId=${movieId}`;
@@ -66,15 +103,9 @@ function initialize() {
 }
 
 function goBack() {
-    if (customHistory.length > 0) {
-        // Pop the last URL from custom history and navigate to it
-        const previousUrl = customHistory.pop();
-        window.location.href = previousUrl;
-    } else {
-        console.log('No custom history available. Going back to default upcoming movies.');
-        fetchUpcomingMovies();
-    }
+    fetchUpcomingMovies();
 }
+
 
 
 function goForward() {
