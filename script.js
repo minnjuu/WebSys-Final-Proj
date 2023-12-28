@@ -48,6 +48,7 @@ function createMovieCard(movie) {
 function searchMovies() {
     const searchQuery = document.getElementById('searchInput').value;
     fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`, displayMovies);
+    document.getElementById('h2').innerHTML = "";
 }
 
 
