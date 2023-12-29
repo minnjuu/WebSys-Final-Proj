@@ -95,6 +95,8 @@ function displayMovieDetails(movie) {
     const posterImage = document.createElement('img');
     posterImage.src = posterUrl;
     posterImage.alt = movie.title;
+    posterImage.style.width = '250px'; 
+    posterImage.style.height = '350px';
 
     movieDetailsContainer.appendChild(title);
     movieDetailsContainer.appendChild(posterImage);
