@@ -1,12 +1,12 @@
 
 const apiKey = '569b146fafa5ac11afca0a031989f2d5';
-const customHistory = [];
 let currentPage = 1;
+let selectedGenre = '';
 
 function fetchUpcomingMovies(page = 1) {
     currentPage = page;
 
-    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${currentPage}`;
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&page=${currentPage}&with_genres=${selectedGenre}`;
     
     fetchMovies(url, displayMovies, 'upcomingMoviesList');
 }
@@ -85,10 +85,21 @@ function createMovieCard(movie) {
 function searchMovies() {
     const searchQuery = document.getElementById('searchInput').value;
     document.getElementById('upcomingMoviesList').style.display = 'none';
+    document.getElementById('pages').style.display = 'none';
     document.getElementById('h2').innerHTML = `Search Result for ${searchQuery}`;
-    fetchMovies(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`, displayMovies);
-    
+
+    let apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`;
+
+    fetchMovies(apiUrl, displayMovies);
+    document.getElementById('genreFilter').value = '';
+   
 }
+    
+function applyGenreFilter() {
+    selectedGenre = document.getElementById('genreFilter').value;
+    fetchUpcomingMovies();
+}
+
 
 
 function navigateToMovieDetailsPage(movieId) {
@@ -98,15 +109,16 @@ function navigateToMovieDetailsPage(movieId) {
 
 function initialize() {
     fetchUpcomingMovies();
-
+    applyGenreFilter();
     document.getElementById('searchButton').addEventListener('click', searchMovies);
 }
 
 function goBack() {
+    console.log('Going back...');
+    document.getElementById('moviesList').style.display = 'none';
+    document.getElementById('upcomingMoviesList').style.display = 'flex';
     fetchUpcomingMovies();
 }
-
-
 
 function goForward() {
     window.history.forward();
