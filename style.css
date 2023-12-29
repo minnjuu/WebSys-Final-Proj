@@ -103,3 +103,10 @@ button {
 #pages button {
     margin: 0 5px; 
 }
+
+.filter { 
+    float: right;
+    height: 30px;
+    width: 100px;
+    margin-top: 2px;
+}
