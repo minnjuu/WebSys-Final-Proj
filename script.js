@@ -117,6 +117,7 @@ function goBack() {
     console.log('Going back...');
     document.getElementById('moviesList').style.display = 'none';
     document.getElementById('upcomingMoviesList').style.display = 'flex';
+    document.getElementById('h2').innerHTML = `Upcoming Movies`;
     fetchUpcomingMovies();
 }
 
