@@ -133,7 +133,7 @@ function searchMovies() {
 }
 
 
-document.getElementById('searchButton').addEventListener('click', searchMovies);
+
 
 function navigateToMovieDetailsPage(movieId) {
 
@@ -149,8 +149,8 @@ function goForward() {
     window.history.forward();
 }
 
+document.getElementById('searchButton').addEventListener('click', searchMovies);
 document.getElementById('backButton').addEventListener('click', goBack);
-
 document.getElementById('forwardButton').addEventListener('click', goForward);
 
 
